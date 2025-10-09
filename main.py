@@ -2,7 +2,7 @@ import customtkinter as ctk
 import tkinter
 import unicodeit
 root= ctk.CTk()
-root.geometry("1000x600")
+root.geometry("1330x600")
 root.resizable(True,True)
 root.title("Scientific Calculator")
 
@@ -17,23 +17,38 @@ root.grid_rowconfigure(0, weight=1)
 main_frame=ctk.CTkFrame(root, fg_color="black")
 main_frame.grid(row=0, column=0,padx=10, pady=10, sticky="nsew")
 
-main_frame.grid_rowconfigure((0,1,2,3,4,5,6,7),weight=1)
-main_frame.grid_columnconfigure((0,1,2,3,4,5,6),weight=1)
+main_frame.grid_rowconfigure((0,1,2,3,8,4,5,6,7),weight=1)
+main_frame.grid_columnconfigure((0,1,2,3,4,5,6,7),weight=1)
 
 #Display Window
-display_window=ctk.CTkFrame(main_frame)
+display_window=ctk.CTkFrame(main_frame, fg_color="black")
 display_window.grid(row=1,column=0,rowspan=2, padx=(10,5), sticky="nsew", columnspan=5, pady=(5,0))
 
+#White line
+white_line=ctk.CTkFrame(main_frame, height=2, fg_color="gray")
+white_line.grid(row=3, column=0, columnspan=5, sticky="ew", padx=(10,20))
 
 #History Window
-history_window=ctk.CTkScrollableFrame(main_frame, width=450)
-history_window.grid(row=1, column=5,columnspan=2, rowspan=8, padx=5, pady=5, sticky="nsew")
+history_window=ctk.CTkScrollableFrame(main_frame,fg_color="black", width=350)
+history_window.grid(row=1, column=6, rowspan=8, padx=5, pady=5, sticky="nsew")
+history_window.grid_columnconfigure((0,1,2,3), weight=1)
+
+history_label=ctk.CTkLabel(
+    history_window,
+    text="History",
+    font=("TimesNewRoman",20,"bold")
+)
+history_label.grid(column=0, pady=10, sticky="nw")
 
 #operations Window
 operation_window=ctk.CTkFrame(main_frame, fg_color="black")
 operation_window.grid(row=4,column=0, rowspan=4, columnspan=5, padx=(5,10), pady=5, sticky="nsew")
 operation_window.grid_columnconfigure((0,1,2,3,4,5,6,7), weight=1)
 operation_window.grid_rowconfigure((0,1,2,3,4,5), weight=1)
+
+#vertical line
+vertical_line=ctk.CTkFrame(main_frame,fg_color="gray",width=50)
+vertical_line.grid(row=1,column=5, rowspan=8, pady=(5,10), sticky="ns")
 
 
 #Button Commands
@@ -363,48 +378,49 @@ button_divide=ctk.CTkButton(
 button_divide.grid(row=1, column=7, padx=5, pady=5, sticky="nsew")
 
 
-button_xsquare=ctk.CTkButton(
+button_multiply=ctk.CTkButton(
     operation_window,
-    text="x\u00b2",
-    command=command_cos,
-    fg_color="gray20",
-    font=my_font, 
-    hover_color="gray12"
-)
-button_xsquare.grid(row=2, column=0, padx=5, pady=5, sticky="nsew")
-
-
-button_xcube=ctk.CTkButton(
-    operation_window,
-    text="x\u00b3",
+    text="sec",
     command=command_cos,
     fg_color="grey20",
     font=my_font, 
     hover_color="gray12"
 )
-button_xcube.grid(row=2, column=1, padx=5, pady=5, sticky="nsew")
+button_multiply.grid(row=2, column=0, padx=5, pady=5, sticky="nsew")
 
 
-button_xToThePowery=ctk.CTkButton(
+button_multiply=ctk.CTkButton(
     operation_window,
-    text="x\u02b8",
+    text="csc",
     command=command_cos,
     fg_color="grey20",
     font=my_font, 
     hover_color="gray12"
 )
-button_xToThePowery.grid(row=2, column=2, padx=5, pady=5, sticky="nsew")
+button_multiply.grid(row=2, column=1, padx=5, pady=5, sticky="nsew")
 
 
-button_eToThePowerx=ctk.CTkButton(
+button_radian=ctk.CTkButton(
     operation_window,
-    text="e\u02e3",
+    text="Rad",
     command=command_cos,
     fg_color="grey20",
     font=my_font, 
     hover_color="gray12"
 )
-button_eToThePowerx.grid(row=2, column=3, padx=5, pady=5, sticky="nsew")
+button_radian.grid(row=2, column=2, padx=5, pady=5, sticky="nsew")
+
+
+button_multiply=ctk.CTkButton(
+    operation_window,
+    text="x",
+    command=command_cos,
+    fg_color="grey20",
+    font=my_font, 
+    hover_color="gray12"
+)
+button_multiply.grid(row=2, column=3, padx=5, pady=5, sticky="nsew")
+
 
 
 button_multiply=ctk.CTkButton(
@@ -416,6 +432,61 @@ button_multiply=ctk.CTkButton(
     hover_color="gray12"
 )
 button_multiply.grid(row=2, column=7, padx=5, pady=5, sticky="nsew")
+
+
+button_xsquare=ctk.CTkButton(
+    operation_window,
+    text="x\u00b2",
+    command=command_cos,
+    fg_color="gray20",
+    font=my_font, 
+    hover_color="gray12"
+)
+button_xsquare.grid(row=3, column=0, padx=5, pady=5, sticky="nsew")
+
+
+button_xcube=ctk.CTkButton(
+    operation_window,
+    text="x\u00b3",
+    command=command_cos,
+    fg_color="grey20",
+    font=my_font, 
+    hover_color="gray12"
+)
+button_xcube.grid(row=3, column=1, padx=5, pady=5, sticky="nsew")
+
+
+button_xToThePowery=ctk.CTkButton(
+    operation_window,
+    text="x\u02b8",
+    command=command_cos,
+    fg_color="grey20",
+    font=my_font, 
+    hover_color="gray12"
+)
+button_xToThePowery.grid(row=3, column=2, padx=5, pady=5, sticky="nsew")
+
+
+button_eToThePowerx=ctk.CTkButton(
+    operation_window,
+    text="e\u02e3",
+    command=command_cos,
+    fg_color="grey20",
+    font=my_font, 
+    hover_color="gray12"
+)
+button_eToThePowerx.grid(row=3, column=3, padx=5, pady=5, sticky="nsew")
+
+
+button_subtract=ctk.CTkButton(
+    operation_window,
+    text="-",
+    command=command_cos,
+    fg_color="grey20",
+    font=my_font, 
+    hover_color="gray12"
+)
+button_subtract.grid(row=3, column=7, padx=5, pady=5, sticky="nsew")
 
 
 button_10powerx=ctk.CTkButton(
